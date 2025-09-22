@@ -1,6 +1,8 @@
 import { BinaryIcon, BookOpenTextIcon, Clock8Icon, FileDigitIcon, FileJson2Icon, FingerprintIcon, HashIcon, RegexIcon } from "lucide-react"
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Json from "./pages/json"
+import TextCompare from "./pages/text-compare"
+import { useEffect } from "react"
 
 function App() {
   const featureNavigator = [
@@ -55,6 +57,29 @@ function App() {
   ]
 
   const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    // Save to storage whenever route changes
+    chrome.storage.local.get("devtool", (res) => {
+      const prev = res.devtool || {};
+      chrome.storage.local.set({
+        devtool: {
+          ...prev,
+          lastRoute: location.pathname + location.search + location.hash,
+        },
+      });
+    });
+  }, [location]);
+
+  useEffect(() => {
+    chrome.storage.local.get("devtool", (res) => {
+      const lastRoute = res.devtool?.lastRoute;
+      if (lastRoute) {
+        navigate(lastRoute, { replace: true });
+      }
+    });
+  }, []);
 
   return (
     <div className="w-[800px] h-[600px] bg-neutral-50 p-4">
@@ -78,7 +103,7 @@ function App() {
           </div>
         } />
         <Route path="/json" element={<Json />} />
-        <Route path="/text-compare" element={<div>text-compare</div>} />
+        <Route path="/text-compare" element={<TextCompare />} />
         <Route path="/base64" element={<div>base64</div>} />
         <Route path="/number-base" element={<div>number-base</div>} />
         <Route path="/hash" element={<div>hash</div>} />
