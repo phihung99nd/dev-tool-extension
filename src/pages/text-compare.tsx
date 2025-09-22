@@ -14,6 +14,22 @@ function TextCompare() {
     setDiffResult(diff);
   };
 
+  const loadSample = () => {
+    setText1(`React is a JavaScript library for building user interfaces.
+It lets you create reusable UI components.
+React uses a virtual DOM to improve performance.
+It was originally developed by Facebook.
+React is often used together with Redux for state management.
+`)
+    setText2(`React is an open-source JavaScript library for building user interfaces.
+It allows developers to create reusable UI components easily.
+React uses a virtual DOM which makes rendering very efficient.
+It was first created at Facebook.
+React is commonly used with Context API or Redux for managing state.
+React also supports server-side rendering with Next.js.
+`)
+  }
+
   // Load from chrome.storage
   useEffect(() => {
     chrome.storage.local.get("devtool", (res) => {
@@ -49,6 +65,7 @@ function TextCompare() {
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium">Original text</span>
               <div className="flex gap-1">
+                <Button size={"sm"} variant={"outline"} onClick={() => loadSample()}>Load Sample</Button>
                 <Button size={"sm"} variant={"outline"} onClick={() => setText1('')}>Clear <XIcon size={8} /></Button>
               </div>
             </div>
