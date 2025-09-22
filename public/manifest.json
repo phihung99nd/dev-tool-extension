@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Dev Tool: Your Ultimate Developer Toolkit",
+  "version": "0.0.1",
+  "description": "Unlock your productivity with tools designed for developers, by a developer.",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
