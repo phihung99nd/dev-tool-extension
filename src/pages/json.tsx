@@ -15,7 +15,7 @@ function CollapsibleJsonViewer({ jsonString }: { jsonString: string }) {
   }
 
   return (
-    <div className="font-mono text-sm h-full max-h-[528px] bg-slate-800 overflow-auto">
+    <div className="font-mono text-sm h-full max-h-[528px] rounded-md bg-slate-800 overflow-auto">
       <JsonNode value={data} />
     </div>
   );
@@ -112,7 +112,25 @@ function Json() {
       })
   }
 
+  // Load from chrome.storage
   useEffect(() => {
+    chrome.storage.local.get("devtool", (res) => {
+      if (res.devtool) {
+        setInputJson(res.devtool.json || "");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    chrome.storage.local.get("devtool", (res) => {
+      const prev = res.devtool || {};
+      chrome.storage.local.set({
+        devtool: {
+          ...prev,
+          json: inputJson,
+        },
+      });
+    });
     try {
       // Try to parse JSON
       const obj = JSON.parse(inputJson);
@@ -140,7 +158,7 @@ function Json() {
               <Button size={"sm"} variant={"outline"} onClick={loadSample}>Load Sample</Button>
             </div>
           </div>
-          <textarea value={inputJson} onChange={(e) => setInputJson(e.target.value)} placeholder="Paste your JSON here..." className="flex min-h-[80px] rounded-md border-input px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 border-0 focus-visible:ring-0 focus-visible:ring-offset-0">
+          <textarea value={inputJson} onChange={(e) => setInputJson(e.target.value)} placeholder="Paste your JSON here..." className="flex min-h-[80px] rounded-md border px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0">
 
           </textarea>
         </div>
@@ -162,7 +180,7 @@ function Json() {
           </div>
           {
             !outputTreeView && (
-              <textarea value={outputJson} placeholder="Formatted JSON will appear here..." readOnly className="flex min-h-[80px] rounded-md border-input px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+              <textarea value={outputJson} placeholder="Formatted JSON will appear here..." readOnly className="flex min-h-[80px] rounded-md border px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0" />
             )
           }
           {
