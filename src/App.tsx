@@ -1,8 +1,9 @@
-import { BinaryIcon, BookOpenTextIcon, Clock8Icon, FileDigitIcon, FileJson2Icon, FingerprintIcon, HashIcon, RegexIcon } from "lucide-react"
+import { BinaryIcon, BookOpenTextIcon, Clock8Icon, FileJson2Icon, FingerprintIcon, HashIcon, RegexIcon, TypeIcon } from "lucide-react"
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Json from "./pages/json"
 import TextCompare from "./pages/text-compare"
 import { useEffect } from "react"
+import LoremIpsum from "./pages/lorem-ipsum"
 
 function App() {
   const featureNavigator = [
@@ -19,10 +20,10 @@ function App() {
       route: '/text-compare'
     },
     {
-      title: 'Base64 Converter',
-      desc: 'Safely encode and decode text, files, and images to/from Base64 format with automatic format detection.',
-      icon: <FileDigitIcon className="group-hover:text-primary transition-colors" />,
-      route: '/base64'
+      title: 'Lorem Ipsum Generator',
+      desc: 'Generate placeholder text for your designs and layouts.',
+      icon: <TypeIcon className="group-hover:text-primary transition-colors" />,
+      route: '/lorem'
     },
     {
       title: 'Number Base Converter',
@@ -104,7 +105,7 @@ function App() {
         } />
         <Route path="/json" element={<Json />} />
         <Route path="/text-compare" element={<TextCompare />} />
-        <Route path="/base64" element={<div>base64</div>} />
+        <Route path="/lorem" element={<LoremIpsum />} />
         <Route path="/number-base" element={<div>number-base</div>} />
         <Route path="/hash" element={<div>hash</div>} />
         <Route path="/timestamp" element={<div>timestamp</div>} />
