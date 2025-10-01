@@ -4,6 +4,7 @@ import Json from "./pages/json"
 import TextCompare from "./pages/text-compare"
 import { useEffect } from "react"
 import LoremIpsum from "./pages/lorem-ipsum"
+import NumberBase from "./pages/number-base"
 
 function App() {
   const featureNavigator = [
@@ -106,7 +107,7 @@ function App() {
         <Route path="/json" element={<Json />} />
         <Route path="/text-compare" element={<TextCompare />} />
         <Route path="/lorem" element={<LoremIpsum />} />
-        <Route path="/number-base" element={<div>number-base</div>} />
+        <Route path="/number-base" element={<NumberBase />} />
         <Route path="/hash" element={<div>hash</div>} />
         <Route path="/timestamp" element={<div>timestamp</div>} />
         <Route path="/jwt" element={<div>jwt</div>} />
