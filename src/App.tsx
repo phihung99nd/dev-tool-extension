@@ -5,6 +5,10 @@ import TextCompare from "./pages/text-compare"
 import { useEffect } from "react"
 import LoremIpsum from "./pages/lorem-ipsum"
 import NumberBase from "./pages/number-base"
+import Hash from "./pages/hash"
+import Timestamp from "./pages/timestamp"
+import Jwt from "./pages/jwt"
+import Regex from "./pages/regex"
 
 function App() {
   const featureNavigator = [
@@ -108,10 +112,10 @@ function App() {
         <Route path="/text-compare" element={<TextCompare />} />
         <Route path="/lorem" element={<LoremIpsum />} />
         <Route path="/number-base" element={<NumberBase />} />
-        <Route path="/hash" element={<div>hash</div>} />
-        <Route path="/timestamp" element={<div>timestamp</div>} />
-        <Route path="/jwt" element={<div>jwt</div>} />
-        <Route path="/regex" element={<div>regex</div>} />
+        <Route path="/hash" element={<Hash />} />
+        <Route path="/timestamp" element={<Timestamp />} />
+        <Route path="/jwt" element={<Jwt />} />
+        <Route path="/regex" element={<Regex />} />
       </Routes>
     </div>
   )
