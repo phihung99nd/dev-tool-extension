@@ -1,6 +1,6 @@
 import PageBackButton from "@/components/page-back-button";
 import { Button } from "@/components/ui/button";
-import { diffChars, type ChangeObject } from "diff";
+import { diffWords, type ChangeObject } from "diff";
 import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ function TextCompare() {
   const [diffResult, setDiffResult] = useState<ChangeObject<string>[]>([]);
 
   const compareTexts = () => {
-    const diff = diffChars(text1, text2); // character-level diff
+    const diff = diffWords(text1, text2); // character-level diff
     setDiffResult(diff);
   };
 
