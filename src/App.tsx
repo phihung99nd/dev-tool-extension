@@ -1,4 +1,4 @@
-import { BinaryIcon, BookOpenTextIcon, Clock8Icon, FileJson2Icon, FingerprintIcon, HashIcon, RegexIcon, TypeIcon } from "lucide-react"
+import { BinaryIcon, BookOpenTextIcon, Clock8Icon, FileJson2Icon, FingerprintIcon, FullscreenIcon, HashIcon, RegexIcon, TypeIcon } from "lucide-react"
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Json from "./pages/json"
 import TextCompare from "./pages/text-compare"
@@ -87,8 +87,19 @@ function App() {
     });
   }, []);
 
+  const openOnNewTab = () => {
+    chrome.tabs.create({
+      url: chrome.runtime.getURL("index.html#/")
+    });
+  }
+
   return (
-    <div className="w-[800px] h-[600px] bg-neutral-50 p-4">
+    <div className="min-w-[800px] min-h-[600px] w-full h-full bg-neutral-50 p-4 relative">
+      {location.pathname == '/' && <>
+        <div className="fixed bottom-[10px] right-[10px] z-1 bg-sidebar-accent h-10 w-10 flex justify-center items-center rounded-lg flex-shrink-0 group hover:bg-primary/20 transition-colors" onClick={openOnNewTab}>
+          <FullscreenIcon className="group-hover:text-primary transition-colors" />
+        </div>
+      </>}
       <Routes>
         <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/" element={

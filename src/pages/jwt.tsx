@@ -113,7 +113,7 @@ function Jwt() {
               value={jwt}
               onChange={(e) => setJwt(e.target.value)}
               placeholder="Paste your JSON here..."
-              className="flex min-h-[80px] leading-[inherit] whitespace-pre-wrap break-words break-keep caret-black selection:bg-blue-200 rounded-md border px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0 overflow-auto"              onScroll={(e) => {
+              className="flex min-h-[80px] leading-[inherit] text-transparent whitespace-pre-wrap break-words break-keep caret-black selection:bg-blue-200 rounded-md border px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 text-xs h-full w-full resize-none font-mono bg-slate-100 focus-visible:ring-0 focus-visible:ring-offset-0 overflow-auto"              onScroll={(e) => {
                 const pre = document.getElementById("jwt-highlight");
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 if (pre) pre.scrollTop = (e.target as any).scrollTop;
