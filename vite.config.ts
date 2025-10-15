@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import manifest from './public/manifest.json';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist', // Output directory for the extension
+    outDir: `dist/${manifest.version}`, // Output directory for the extension
     rollupOptions: {
       input: {
         index: './index.html',
